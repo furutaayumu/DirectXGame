@@ -1,17 +1,34 @@
 #pragma once
-
-#include <KamataEngine.h>
-
-using namespace KamataEngine;
-class Particle {
+#include<KamataEngine.h>
+//using namespace KamataEngine;
+//パーティクル
+class Particle 
+{
 public:
-	void Initialize(Model* model);
+	//初期化
+	void Initialize(KamataEngine::Model* model, KamataEngine::Vector3 position, KamataEngine::Vector3 velocity);
+	//更新
 	void Update();
-	void Draw(Camera& camera);
+	//描画
+	void Draw(KamataEngine::Camera& camera);
+	// デスフラグのgetter
+	bool IsFinished() { return isFinished_; }
 
-private:
-	WorldTransform worldTransform_;
-	Model* model_ = nullptr;
-	ObjectColor objectColor_;
-	Vector4 color_;
+private://メンバ変数（アンダーバーがついてるやつが引数として受け取ったデータをメンバ変数に記録する事ができる）
+	//ワールド変換データ
+	KamataEngine::WorldTransform worldTransform_;
+	//モデル
+	KamataEngine::Model* model_ = nullptr;
+	//色変更オブジェクト
+	KamataEngine::ObjectColor objectColor_;
+	//色の数値
+	KamataEngine::Vector4 color_;
+	//移動量
+	KamataEngine::Vector3 velocity_;
+	//終了フラグ
+	bool isFinished_ = false;
+	//経過時間カウント
+	float counter_ = 0.0f;
+	//存続時間(消滅までの時間)<秒>
+	const float kDuration = 1.0f;
 };
