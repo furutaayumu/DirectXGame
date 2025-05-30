@@ -13,14 +13,14 @@ void Particle::Initialize(Model* model, Vector3 position, Vector3 velocity) {
 	worldTransform_.Initialize();
 	//色の設定
 	objectColor_.Initialize();
-	color_ = {1, 1, 0, 1};
+	color_ = {0, 1, 0, 1};
 
 	worldTransform_.translation_ = position;
 
 	//受け取った移動量をメンバ変数に代入する
 	velocity_ = velocity;
 	//大きさ
-	worldTransform_.scale_ = {0.2f, 0.2f, 0.2f};
+	worldTransform_.scale_ = {0.1f, 0.3f, 0.1f};
 }
 
 void Particle::Update() 
