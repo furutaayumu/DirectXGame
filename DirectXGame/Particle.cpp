@@ -1,5 +1,6 @@
 #include "Particle.h"
 
+using namespace MathUtility;
 void Particle::Initialize(Model* model) { 
 	model_ = model;
 	worldTransform_.Initialize();
@@ -9,8 +10,10 @@ void Particle::Initialize(Model* model) {
 }
 
 void Particle::Update() {
+	worldTransform_.translation_ += {0.0f, 0.1f, 0.0f};
 	objectColor_.SetColor(color_);
-	worldTransform_.TransferMatrix(); }
+	worldTransform_.UpdateMatrix();
+}
 
 void Particle::Draw(Camera& camera) { model_->Draw(worldTransform_, camera,&objectColor_); }
 
