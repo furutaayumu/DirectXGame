@@ -1,6 +1,7 @@
 #pragma once
 #include "KamataEngine.h"
 #include "Particle.h"
+#include "Model2.h"
  class GameScene {
 public:
 	void Initialize();
@@ -14,6 +15,6 @@ public:
 	Camera camera_;
 
 private:
-	KamataEngine::Model* ModelParticle_ = nullptr;
+	KamataEngine::Model2* ModelParticle_ = nullptr;
 	Particle* particle_ = nullptr;
  };

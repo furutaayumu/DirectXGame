@@ -5,8 +5,9 @@ using namespace KamataEngine;
 void GameScene::Initialize() { 
 	particle_ = new Particle();
 	camera_.Initialize();
-	ModelParticle_ = Model::CreateSphere(4, 4);
+	ModelParticle_ = Model2::CreateSphere(4, 4);
 	particle_->Initialize(ModelParticle_);
+	Model2::StaticInitialize();
 }
 
 void GameScene::Update() { particle_->Update(); }
@@ -14,11 +15,13 @@ void GameScene::Update() { particle_->Update(); }
 void GameScene::Draw() { 
 	DirectXCommon* dxCommon = DirectXCommon::GetInstance();
 
-	Model::PreDraw(dxCommon->GetCommandList());
+	Model2::PreDraw(dxCommon->GetCommandList());
 	particle_->Draw(camera_); 
-	Model::PostDraw();
+	Model2::PostDraw();
 }
 
 GameScene::~GameScene() { 
 	delete particle_;
-	delete ModelParticle_; }
+	delete ModelParticle_; 
+	Model2::StaticFinalize();
+}
