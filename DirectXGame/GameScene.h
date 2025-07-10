@@ -3,17 +3,18 @@
 #include "Particle.h"
  class GameScene {
 public:
+
+	GameScene();
+
+	~GameScene();
+
 	void Initialize();
 
 	void Update();
 
 	void Draw();
 
-	~GameScene();
-
-	Camera camera_;
-
 private:
-	KamataEngine::Model* ModelParticle_ = nullptr;
-	Particle* particle_ = nullptr;
+	uint32_t textureHandle_ = 0;
+	KamataEngine::Sprite* sprite_ = nullptr;
  };

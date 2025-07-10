@@ -2,23 +2,40 @@
 
 using namespace KamataEngine;
 
-void GameScene::Initialize() { 
-	particle_ = new Particle();
-	camera_.Initialize();
-	ModelParticle_ = Model::CreateSphere(4, 4);
-	particle_->Initialize(ModelParticle_);
-}
+GameScene::GameScene() {}
 
-void GameScene::Update() { particle_->Update(); }
+GameScene::~GameScene() { delete sprite_; }
+
+void GameScene::Initialize() { 
+	// ファイル名を指定してテクスチャを読み込む
+	textureHandle_ = TextureManager::Load("Title.png");
+
+	// スプライトインスタンスの生成
+	sprite_ = Sprite::Create(textureHandle_, {0, 0});
+}
+int frameCount = 0;
+void GameScene::Update() {
+	frameCount++;
+
+	// sin波で上下に揺れるY座標を作る（±10ピクセル範囲で動かす）
+	float y = 10 * sin(frameCount * 0.05f);
+
+	// スプライトの位置を更新
+	sprite_->SetPosition({0.0f, y});
+}
 
 void GameScene::Draw() { 
 	DirectXCommon* dxCommon = DirectXCommon::GetInstance();
 
-	Model::PreDraw(dxCommon->GetCommandList());
-	particle_->Draw(camera_); 
-	Model::PostDraw();
+	// スプライト描画前処理
+	Sprite::PreDraw(dxCommon->GetCommandList());
+
+	// スプライトインスタンスの描画処理
+
+		sprite_->Draw();
+
+
+	// スプライト描画後処理
+	Sprite::PostDraw();
 }
 
-GameScene::~GameScene() { 
-	delete particle_;
-	delete ModelParticle_; }
