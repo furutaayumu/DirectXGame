@@ -1,20 +1,30 @@
 #pragma once
-#include "KamataEngine.h"
-#include "Particle.h"
- class GameScene {
+#include"KamataEngine.h"
+#include "Stage.h"
+class GameScene 
+{
 public:
-
+	/// コンストクラタ
+	/// </summary>
 	GameScene();
-
+	/// <summary>
+	/// デストラクタ
+	/// </summary>
 	~GameScene();
-
+	//初期化
 	void Initialize();
-
+	//更新
 	void Update();
 
+	//描画
 	void Draw();
-
 private:
+	// テクスチャハンドル
 	uint32_t textureHandle_ = 0;
+
+	//スプライト
 	KamataEngine::Sprite* sprite_ = nullptr;
- };
+
+	//ステージ
+	Stage* stage_ = nullptr;
+};
